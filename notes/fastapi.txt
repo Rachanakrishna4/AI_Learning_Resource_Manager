@@ -1,0 +1,22 @@
+FastAPI Notes
+
+What is FastAPI?
+FastAPI is a modern, high-performance Python web framework for building APIs. It is built on top of Starlette for the web parts and Pydantic for data validation. It uses standard Python type hints to define what data an endpoint accepts and returns.
+
+Running a FastAPI app
+FastAPI apps are run with an ASGI server such as Uvicorn. The command is: uvicorn app:app --reload. The first "app" is the file name (app.py) and the second "app" is the FastAPI object inside that file. The --reload flag restarts the server automatically when the code changes.
+
+Routes and HTTP methods
+Routes are defined with decorators like @app.get, @app.post, @app.put, and @app.delete. GET reads data, POST creates data, PUT updates data, and DELETE removes data. Together these four make up a CRUD API.
+
+Path parameters and query parameters
+A path parameter is part of the URL, such as /resources/{resource_id}. A query parameter comes after a question mark, such as /resources?topic=python. FastAPI reads both and converts them to the type declared in the function signature.
+
+Pydantic models and validation
+A Pydantic model describes the shape of the request body. For example, a model can require a title of 2 to 100 characters and a valid URL. If the incoming data breaks these rules, FastAPI automatically returns a 422 error explaining what is wrong.
+
+Status codes and errors
+Use status 201 when a resource is created and 204 when something is deleted with no content returned. To return an error, raise HTTPException with a status code and message, for example 404 for "Resource not found".
+
+Automatic documentation
+FastAPI generates interactive API documentation at /docs (Swagger UI) and /redoc. You can test every endpoint directly in the browser without extra tools.
